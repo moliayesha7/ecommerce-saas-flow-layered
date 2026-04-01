@@ -1,0 +1,16 @@
+export enum NotificationType {
+  ORDER_PLACED = 'order_placed',
+  ORDER_CONFIRMED = 'order_confirmed',
+  ORDER_SHIPPED = 'order_shipped',
+  ORDER_DELIVERED = 'order_delivered',
+  ORDER_CANCELLED = 'order_cancelled',
+  PAYMENT_SUCCESS = 'payment_success',
+  PAYMENT_FAILED = 'payment_failed',
+  LOW_STOCK = 'low_stock',
+  NEW_REVIEW = 'new_review',
+  SUBSCRIPTION_EXPIRING = 'subscription_expiring',
+  SUBSCRIPTION_EXPIRED = 'subscription_expired',
+  REFUND_PROCESSED = 'refund_processed',
+  ACCOUNT_APPROVED = 'account_approved',
+  SYSTEM_ALERT = 'system_alert',
+}
