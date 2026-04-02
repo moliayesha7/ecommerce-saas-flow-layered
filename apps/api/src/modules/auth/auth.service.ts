@@ -29,9 +29,11 @@ export class AuthService {
   ) {}
 
   async login(dto: LoginDto, meta?: { userAgent?: string; ip?: string }) {
-    const user = await this.userRepository.findOne({
-      where: { email: dto.email.toLowerCase() },
-    });
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.email = :email', { email: dto.email.toLowerCase() })
+      .getOne();
 
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
@@ -162,9 +164,11 @@ export class AuthService {
   }
 
   async resetPassword(token: string, newPassword: string) {
-    const user = await this.userRepository.findOne({
-      where: { passwordResetToken: token },
-    });
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect(['user.passwordResetToken', 'user.passwordResetExpiry'])
+      .where('user.passwordResetToken = :token', { token })
+      .getOne();
 
     if (!user || !user.passwordResetExpiry || user.passwordResetExpiry < new Date()) {
       throw new BadRequestException('Password reset token is invalid or expired');

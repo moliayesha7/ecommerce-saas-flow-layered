@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
+  "ts-node": {
+    "transpileOnly": true,
+    "ignore": ["/node_modules/(?!@saas-commerce)"]
+  },
   "compilerOptions": {
     "types": ["node"],
     "moduleResolution": "node",

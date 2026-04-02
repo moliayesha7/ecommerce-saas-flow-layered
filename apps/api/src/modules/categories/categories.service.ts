@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { CategoryEntity } from './entities/category.entity';
 import { slugify } from '@saas-commerce/utils';
 
@@ -48,7 +48,7 @@ export class CategoriesService {
       data.slug = slugify(data.name);
     }
     const existing = await this.categoryRepository.findOne({
-      where: { slug: data.slug, tenantId: data.tenantId },
+      where: { slug: data.slug, tenantId: data.tenantId ?? IsNull() },
     });
     if (existing) {
       data.slug = `${data.slug}-${Date.now()}`;

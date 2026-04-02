@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { AppDataSource } from '../data-source';
+import AppDataSource from '../data-source';
 import * as bcrypt from 'bcryptjs';
 
 async function seed() {

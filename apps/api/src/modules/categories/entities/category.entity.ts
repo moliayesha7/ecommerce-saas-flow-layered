@@ -16,7 +16,7 @@ export class CategoryEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'tenant_id', nullable: true })
+  @Column({ type: 'uuid', name: 'tenant_id', nullable: true })
   tenantId?: string | null;
 
   @Column({ length: 255 })
@@ -31,7 +31,7 @@ export class CategoryEntity {
   @Column({ nullable: true })
   image?: string;
 
-  @Column({ name: 'parent_id', nullable: true })
+  @Column({ type: 'uuid', name: 'parent_id', nullable: true })
   parentId?: string | null;
 
   @ManyToOne(() => CategoryEntity, (cat) => cat.children, { nullable: true, onDelete: 'SET NULL' })

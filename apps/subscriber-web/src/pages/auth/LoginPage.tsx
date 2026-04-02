@@ -25,7 +25,7 @@ export default function LoginPage() {
   const mutation = useMutation({
     mutationFn: (data: FormValues) => apiClient.post('/auth/login', data).then((r) => r.data.data),
     onSuccess: (data) => {
-      setAuth(data.user, data.accessToken, data.refreshToken);
+      setAuth(data.user, data.tokens.accessToken, data.tokens.refreshToken);
       navigate('/dashboard');
     },
   });

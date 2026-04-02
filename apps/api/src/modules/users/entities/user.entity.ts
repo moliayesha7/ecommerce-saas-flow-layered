@@ -39,7 +39,7 @@ export class UserEntity {
   })
   role: UserRole;
 
-  @Column({ name: 'tenant_id', nullable: true })
+  @Column({ type: 'uuid', name: 'tenant_id', nullable: true })
   tenantId?: string | null;
 
   @Column({ nullable: true })
