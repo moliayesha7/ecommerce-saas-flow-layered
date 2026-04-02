@@ -1,4 +1,4 @@
-version: '3.9'
+
 
 services:
   postgres:
@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: saas_commerce
     ports:
       - "5432:5432"
@@ -18,7 +18,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
   redis:
     image: redis:7-alpine
     container_name: saas-commerce-redis
